@@ -1,4 +1,4 @@
-''' ITERATION 3
+''' ITERATION 4
 
 Macmillan Learning: Not Just A Publisher, A Learning Company
 
@@ -21,8 +21,10 @@ Here's what a first draft of my utils_case.py might look like:
 4. I'll add the boilerplate conditional execution code so I only run the main() function when 
    this script is executed directly (but not when I import it into another file).
 
-I'll test it in an online interpreter to ensure this version runs correctly before continuing.
+5. In Iteration 4, I am adding basic statistics to analyze the scores.
 '''
+
+import statistics  # Import the statistics module for calculating mean and stdev
 
 #####################################
 # Declare global variables.
@@ -34,12 +36,22 @@ number_of_projects: int = 5
 languages_used: list[str] = ["Python", "R", "SQL"]
 recent_scores: list[float] = [88.5, 92.3, 79.0]
 
+# Calculate statistics for the recent_scores
+min_score: float = min(recent_scores)
+max_score: float = max(recent_scores)
+mean_score: float = statistics.mean(recent_scores)
+stdev_score: float = statistics.stdev(recent_scores)
+
 byline: str = (
     f'Macmillan Learning: Not Just A Publisher, A Learning Company\n'
     f'Pet Friendly: {is_pet_friendly}\n'
     f'Number of Projects: {number_of_projects}\n'
     f'Languages Used: {", ".join(languages_used)}\n'
-    f'Recent Scores: {", ".join(map(str, recent_scores))}'
+    f'Recent Scores: {", ".join(map(str, recent_scores))}\n'
+    f'Min Score: {min_score}\n'
+    f'Max Score: {max_score}\n'
+    f'Average Score: {mean_score:.2f}\n'
+    f'Standard Deviation: {stdev_score:.2f}'
 )
 
 #####################################
@@ -56,3 +68,33 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
+# Declare your custom list
+custom_scores: list[float] = [72.4, 85.1, 90.5, 88.0, 79.6]
+
+# Calculate statistics for the custom_scores
+min_custom_score: float = min(custom_scores)
+max_custom_score: float = max(custom_scores)
+mean_custom_score: float = statistics.mean(custom_scores)
+stdev_custom_score: float = statistics.stdev(custom_scores)
+
+# Update the byline to include statistics for the custom list as well
+byline_custom: str = (
+    f'Macmillan Learning: Not Just A Publisher, A Learning Company\n'
+    f'Pet Friendly: {is_pet_friendly}\n'
+    f'Number of Projects: {number_of_projects}\n'
+    f'Languages Used: {", ".join(languages_used)}\n'
+    f'Recent Scores: {", ".join(map(str, recent_scores))}\n'
+    f'Custom Scores: {", ".join(map(str, custom_scores))}\n'
+    f'Min Score (Custom): {min_custom_score}\n'
+    f'Max Score (Custom): {max_custom_score}\n'
+    f'Average Score (Custom): {mean_custom_score:.2f}\n'
+    f'Standard Deviation (Custom): {stdev_custom_score:.2f}'
+)
+
+def main_custom() -> None:
+    '''Print the byline with custom scores to the console when this function is called.'''
+    print(byline_custom)
+
+if __name__ == '__main__':
+    main_custom()
