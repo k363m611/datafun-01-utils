@@ -1,27 +1,17 @@
-''' ITERATION 4
+''' ITERATION 5
 
 Macmillan Learning: Not Just A Publisher, A Learning Company
 
-This module provides a simple, reusable foundation for my analytics projects. 
-When we work hard to write useful code, we want it to be reusable.
-A good byline could be used in every Python analytics project we do.
+In this module, I demonstrate the integration of essential statistics into our analytics projects.
+With the goal of making our code both reusable and insightful, this update includes:
+1. Detailed statistics for client satisfaction scores.
+2. Enhanced insights into our custom numeric list.
+3. A refined docstring reflecting the purpose and scope of this module.
 
 Process:
-
-We don't write code from top to bottom; instead, we often write it from the outside in.
-Here's what a first draft of my utils_case.py might look like:
-
-1. I start with this docstring at the very beginning.
-   I use it to clarify the purpose of my Python file and organize my thoughts.
-   
-2. I'll declare global variables to include new information for testing.
-
-3. I'll declare a main() function for my module. When I run this script, I can use main() to test my byline.
-
-4. I'll add the boilerplate conditional execution code so I only run the main() function when 
-   this script is executed directly (but not when I import it into another file).
-
-5. In Iteration 4, I am adding basic statistics to analyze the scores.
+- Import the necessary module for statistical calculations.
+- Calculate and display key statistics (min, max, mean, standard deviation) for both example and custom data.
+- Ensure all relevant variables and insights are incorporated into the byline for comprehensive reporting.
 '''
 
 import statistics  # Import the statistics module for calculating mean and stdev
@@ -30,28 +20,41 @@ import statistics  # Import the statistics module for calculating mean and stdev
 # Declare global variables.
 #####################################
 
-# Update the byline with a multiline f-string to include new information.
-is_pet_friendly: bool = True
-number_of_projects: int = 5
-languages_used: list[str] = ["Python", "R", "SQL"]
-recent_scores: list[float] = [88.5, 92.3, 79.0]
+# Example client satisfaction scores
+client_satisfaction_scores: list[float] = [85.0, 90.5, 78.0, 88.2, 92.1]
 
-# Calculate statistics for the recent_scores
-min_score: float = min(recent_scores)
-max_score: float = max(recent_scores)
-mean_score: float = statistics.mean(recent_scores)
-stdev_score: float = statistics.stdev(recent_scores)
+# Calculate statistics for client_satisfaction_scores
+min_client_score: float = min(client_satisfaction_scores)
+max_client_score: float = max(client_satisfaction_scores)
+mean_client_score: float = statistics.mean(client_satisfaction_scores)
+stdev_client_score: float = statistics.stdev(client_satisfaction_scores)
 
+# Custom numeric list
+custom_scores: list[float] = [72.4, 85.1, 90.5, 88.0, 79.6]
+
+# Calculate statistics for custom_scores
+min_custom_score: float = min(custom_scores)
+max_custom_score: float = max(custom_scores)
+mean_custom_score: float = statistics.mean(custom_scores)
+stdev_custom_score: float = statistics.stdev(custom_scores)
+
+# Update the byline to include statistics for both sets of scores
 byline: str = (
     f'Macmillan Learning: Not Just A Publisher, A Learning Company\n'
     f'Pet Friendly: {is_pet_friendly}\n'
     f'Number of Projects: {number_of_projects}\n'
     f'Languages Used: {", ".join(languages_used)}\n'
     f'Recent Scores: {", ".join(map(str, recent_scores))}\n'
-    f'Min Score: {min_score}\n'
-    f'Max Score: {max_score}\n'
-    f'Average Score: {mean_score:.2f}\n'
-    f'Standard Deviation: {stdev_score:.2f}'
+    f'Client Satisfaction Scores:\n'
+    f'  Min: {min_client_score}\n'
+    f'  Max: {max_client_score}\n'
+    f'  Average: {mean_client_score:.2f}\n'
+    f'  Standard Deviation: {stdev_client_score:.2f}\n'
+    f'Custom Scores:\n'
+    f'  Min: {min_custom_score}\n'
+    f'  Max: {max_custom_score}\n'
+    f'  Average: {mean_custom_score:.2f}\n'
+    f'  Standard Deviation: {stdev_custom_score:.2f}'
 )
 
 #####################################
@@ -68,33 +71,3 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
-
-# Declare your custom list
-custom_scores: list[float] = [72.4, 85.1, 90.5, 88.0, 79.6]
-
-# Calculate statistics for the custom_scores
-min_custom_score: float = min(custom_scores)
-max_custom_score: float = max(custom_scores)
-mean_custom_score: float = statistics.mean(custom_scores)
-stdev_custom_score: float = statistics.stdev(custom_scores)
-
-# Update the byline to include statistics for the custom list as well
-byline_custom: str = (
-    f'Macmillan Learning: Not Just A Publisher, A Learning Company\n'
-    f'Pet Friendly: {is_pet_friendly}\n'
-    f'Number of Projects: {number_of_projects}\n'
-    f'Languages Used: {", ".join(languages_used)}\n'
-    f'Recent Scores: {", ".join(map(str, recent_scores))}\n'
-    f'Custom Scores: {", ".join(map(str, custom_scores))}\n'
-    f'Min Score (Custom): {min_custom_score}\n'
-    f'Max Score (Custom): {max_custom_score}\n'
-    f'Average Score (Custom): {mean_custom_score:.2f}\n'
-    f'Standard Deviation (Custom): {stdev_custom_score:.2f}'
-)
-
-def main_custom() -> None:
-    '''Print the byline with custom scores to the console when this function is called.'''
-    print(byline_custom)
-
-if __name__ == '__main__':
-    main_custom()
